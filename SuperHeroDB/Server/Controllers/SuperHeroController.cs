@@ -14,7 +14,7 @@ namespace SuperHeroDB.Server.Controllers
     {
         static List<Comic> comics = new List<Comic>
         {
-            new Comic {Name = "marvel"},
+            new Comic {Name = "Marvel"},
             new Comic {Name = "DC Universe"}
         };
 
