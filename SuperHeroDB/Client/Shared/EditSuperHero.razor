@@ -42,10 +42,12 @@
         await SuperHeroService.GetComics();
     }
 
-    void HandleSubmit()
+    async void HandleSubmit()
     {
         Hero.Comic = SuperHeroService.Comics.FirstOrDefault(c => c.Id == comicId);
         Console.WriteLine("Submit was called");
         JSRuntime.InvokeVoidAsync("console.log", Hero);
+
+        await SuperHeroService.CreateSuperHero(Hero);
     }
 }

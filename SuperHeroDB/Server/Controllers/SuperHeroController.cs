@@ -14,11 +14,11 @@ namespace SuperHeroDB.Server.Controllers
     {
         static List<Comic> comics = new List<Comic>
         {
-            new Comic {Name = "Marvel"},
-            new Comic {Name = "DC Universe"}
+            new Comic {Id = 1, Name = "Marvel"},
+            new Comic {Id = 2, Name = "DC Universe"}
         };
 
-        List<SuperHero> heroes = new List<SuperHero>
+        static List<SuperHero> heroes = new List<SuperHero>
         {
             new SuperHero {Id = 1, FirstName = "Peter", LastName = "Parker", HeroName = "Spiderman", Comic = comics[0]},
             new SuperHero {Id = 2, FirstName = "Bruce", LastName = "Wayne", HeroName = "Batman", Comic = comics[1]}
@@ -49,6 +49,7 @@ namespace SuperHeroDB.Server.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateSuperHero(SuperHero hero)
         {
+            hero.Id = heroes.Max(h => h.Id + 1);
             heroes.Add(hero);
 
             return Ok(heroes);
