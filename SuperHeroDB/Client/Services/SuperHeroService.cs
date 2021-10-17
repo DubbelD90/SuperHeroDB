@@ -30,6 +30,14 @@ namespace SuperHeroDB.Client.Services
             return Heroes;
         }
 
+        public async Task<List<SuperHero>> DeleteSuperHero(int id)
+        {
+            var result = await _httpClient.DeleteAsync($"/api/SuperHero/{id}");
+            Heroes = await result.Content.ReadFromJsonAsync<List<SuperHero>>();
+            OnChange.Invoke();
+            return Heroes;
+        }
+
         public async Task GetComics()
         {
             Comics = await _httpClient.GetFromJsonAsync<List<Comic>>($"/api/superhero/comics");
@@ -43,6 +51,14 @@ namespace SuperHeroDB.Client.Services
         public async Task<List<SuperHero>> GetSuperHeroes()
         {
             Heroes = await _httpClient.GetFromJsonAsync<List<SuperHero>>("/api/SuperHero");
+            return Heroes;
+        }
+
+        public async Task<List<SuperHero>> UpdateSuperHero(SuperHero hero, int id)
+        {
+            var result = await _httpClient.PutAsJsonAsync($"/api/SuperHero/{id}", hero);
+            Heroes = await result.Content.ReadFromJsonAsync<List<SuperHero>>();
+            OnChange.Invoke();
             return Heroes;
         }
     }

@@ -49,8 +49,41 @@ namespace SuperHeroDB.Server.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateSuperHero(SuperHero hero)
         {
-            hero.Id = heroes.Max(h => h.Id + 1);
+            if(SuperHeroDB.Server.Controllers.SuperHeroController.heroes == null)
+            {
+                hero.Id = 1;
+            }
+            else
+            {
+                hero.Id = heroes.Max(h => h.Id + 1);
+            }
+
             heroes.Add(hero);
+
+            return Ok(heroes);
+        }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateSuperHero(SuperHero hero, int id)
+        {
+            var dbhero = heroes.FirstOrDefault(h => h.Id == id);
+            if (dbhero == null)
+                return NotFound("Hero was not found");
+
+            var index = heroes.IndexOf(dbhero);
+            heroes [index] = hero;
+
+            return Ok(heroes);
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteSuperHero(int id)
+        {
+            var dbhero = heroes.FirstOrDefault(h => h.Id == id);
+            if (dbhero == null)
+                return NotFound("Hero was not found");
+
+            heroes.Remove(dbhero);
 
             return Ok(heroes);
         }
