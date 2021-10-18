@@ -28,21 +28,21 @@ else
         <tbody>
             @foreach (var hero in SuperHeroService.Heroes)
             {
-            <tr>
-                <td>@hero.FirstName</td>
-                <td>@hero.LastName</td>
-                <td>@hero.HeroName</td>
-                <td>@hero.Comic.Name</td>
-                <td>
-                    <button class="btn btn-primary" @onclick="(() => ShowHero(hero.Id))">Show Hero</button>
-                </td>
-                <td>
-                    <button class="btn btn-primary" @onclick="(() => EditHero(hero.Id))">Edit Hero</button>
-                </td>
-                <td>
-                    <button class="btn btn-primary" @onclick="(() => DeleteHero(hero.Id))">Delete Hero</button>
-                </td>
-            </tr>
+                <tr>
+                    <td>@hero.FirstName</td>
+                    <td>@hero.LastName</td>
+                    <td>@hero.HeroName</td>
+                    <td>@hero.Comic.Name</td>
+                    <td>
+                        <button class="btn btn-primary" @onclick="(() => ShowHero(hero.Id))">Show Hero</button>
+                    </td>
+                    <td>
+                        <button class="btn btn-primary" @onclick="(() => EditHero(hero.Id))">Edit Hero</button>
+                    </td>
+                    <td>
+                       <button class="btn btn-primary" @onclick="(() => DeleteHero(hero.Id))">Delete Hero</button>
+                    </td>
+                </tr>
             }
         </tbody>
     </table>
