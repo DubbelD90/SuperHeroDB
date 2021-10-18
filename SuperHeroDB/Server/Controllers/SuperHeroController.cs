@@ -49,7 +49,7 @@ namespace SuperHeroDB.Server.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateSuperHero(SuperHero hero)
         {
-            if(SuperHeroDB.Server.Controllers.SuperHeroController.heroes == null)
+            if(heroes == null)
             {
                 hero.Id = 1;
             }
